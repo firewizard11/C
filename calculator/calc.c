@@ -1,13 +1,13 @@
 #include <stdio.h>
 
 int main() {
-	float op1;
-	float op2;
+	float op1, op2;
 	float result;
 	int option;
 
+	printf("=== Operations ===\n");
 	printf("1) Add\n2) Subtract\n3) Multiply\n4) Divide\n");
-	printf("Select an Option: ");
+	printf("Select an Operation: ");
 	scanf("%d", &option);	
 	
 	if (option < 1 || option > 4) {
@@ -20,8 +20,6 @@ int main() {
 
 	printf("Enter Operand 2: ");
 	scanf("%f", &op2);
-
-	printf("Operand 1: %f\nOperand 2: %f\n", op1, op2);	
 
 	switch (option) {
 		case 1:
