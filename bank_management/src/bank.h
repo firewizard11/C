@@ -1,14 +1,19 @@
 #define MAX_DIGITS 8
 
 typedef struct {
-    char number[MAX_DIGITS];
+    char number[8];
     float balance;
 } Account;
 
-void openAccount(char number[MAX_DIGITS], float balance);
-void closeAccount(char number[MAX_DIGITS]);
-float checkAccount(char number[MAX_DIGITS]);
+typedef struct {
+    Account* accounts;
+    int n_acc = 0;
+} Bank;
 
-void depositAccount(char number[MAX_DIGITS], float amount);
-void withdrawAccount(char number[MAX_DIGITS], float amount);
-void transferMoney(char acc1[MAX_DIGITS], char acc2[MAX_DIGITS]);
+void openAccount(Bank* Bank, char number[MAX_DIGITS]);
+void closeAccount(Bank* Bank, char number[MAX_DIGITS]);
+float checkBalance(Bank* Bank, char number[MAX_DIGITS]);
+
+void depositMoney(Bank* bank, char number[MAX_DIGITS], float amount);
+float withdrawMoney(Bank* bank, char number[MAX_DIGITS], float amount);
+void transferMoney(Bank* bank, char first[MAX_DIGITS], char sec[MAX_DIGITS], float amount);
