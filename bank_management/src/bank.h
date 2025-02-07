@@ -2,7 +2,7 @@
 
 typedef struct {
     char number[8];
-    float balance;
+    float balance = 0;
 } Account;
 
 typedef struct {
