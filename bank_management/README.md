@@ -2,11 +2,7 @@
 
 ## Description
 
-This Program is an Implementation of Core Banking Software.
-
-This type of Banking Software is used to Record and Manage Transactions made by customer accounts.
-
-The goal of this program is to provide Core Banking Operations using a CLI Interface.
+This Program is a Banking Software that implements Core Banking Operations like Managing Accounts and Performing Basic Transactions like Deposit, Withdraw and Transferring between accounts.
 
 ## Features
 
