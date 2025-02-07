@@ -12,7 +12,7 @@ typedef struct {
 
 void openAccount(Bank* Bank, char number[MAX_DIGITS]);
 void closeAccount(Bank* Bank, char number[MAX_DIGITS]);
-float checkBalance(Bank* Bank, char number[MAX_DIGITS]);
+float checkAccount(Bank* Bank, char number[MAX_DIGITS]);
 
 void depositMoney(Bank* bank, char number[MAX_DIGITS], float amount);
 float withdrawMoney(Bank* bank, char number[MAX_DIGITS], float amount);
