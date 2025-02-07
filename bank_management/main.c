@@ -12,7 +12,7 @@ Bank createBank();
 void openAccount(Bank* bank, char number[8]);
 static int searchBank(Bank bank, char number[8]);
 void closeAccount(Bank* bank, char number[8]);
-void checkAccount(Bank* bank, char number[8]);
+void checkAccount(Bank bank, char number[8]);
 void depositAccount(Bank* bank, char number[8], float amount);
 float withdrawAccount(Bank* bank, char number[8], float amount);
 
@@ -20,10 +20,8 @@ int main() {
     Bank test_bank = createBank();
 
     openAccount(&test_bank, "12345678");
-    
-    int idx = searchBank(test_bank, "12345678");
 
-    printAccount(test_bank.open_acc[idx]);
+    checkAccount(test_bank, "12345678");
 
     return 0;
 }
@@ -46,4 +44,13 @@ static int searchBank(Bank bank, char number[8]) {
             return i;
         }
     }
+}
+
+void checkAccount(Bank bank, char number[8]) {
+    int idx;
+    Account acc;
+
+    idx = searchBank(bank, number);
+    acc = bank.open_acc[idx];
+    printAccount(acc);
 }
