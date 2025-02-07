@@ -16,6 +16,10 @@ int main() {
 
     printAccount(test_acc);
 
+    addBalance(&test_acc, 1500);
+
+    printAccount(test_acc);
+
     return 0;
 }
 
@@ -30,5 +34,9 @@ Account createAccount(char number[8], float balance) {
 
 void printAccount(Account acc) {
     printf("Account Number: %s\n", acc.number);
-    printf("Balance: %.2f", acc.balance);
+    printf("Balance: %.2f\n", acc.balance);
+}
+
+void addBalance(Account* acc, float amount) {
+    acc->balance += amount;
 }
