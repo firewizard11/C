@@ -23,6 +23,10 @@ int main() {
 
     checkAccount(test_bank, "12345678");
 
+    depositAccount(&test_bank, "12345678", 1500);
+
+    checkAccount(test_bank, "12345678");
+
     return 0;
 }
 
@@ -53,4 +57,12 @@ void checkAccount(Bank bank, char number[8]) {
     idx = searchBank(bank, number);
     acc = bank.open_acc[idx];
     printAccount(acc);
+}
+
+void depositAccount(Bank* bank, char number[8], float amount) {
+    int idx;
+
+    idx = searchBank(*bank, number);
+
+    addBalance(&bank->open_acc[idx], amount);
 }
