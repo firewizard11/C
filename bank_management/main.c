@@ -20,11 +20,12 @@ int main() {
     Bank test_bank = createBank();
 
     openAccount(&test_bank, "12345678");
-
     checkAccount(test_bank, "12345678");
 
     depositAccount(&test_bank, "12345678", 1500);
+    checkAccount(test_bank, "12345678");
 
+    withdrawAccount(&test_bank, "12345678", 500);
     checkAccount(test_bank, "12345678");
 
     return 0;
@@ -60,9 +61,13 @@ void checkAccount(Bank bank, char number[8]) {
 }
 
 void depositAccount(Bank* bank, char number[8], float amount) {
-    int idx;
-
-    idx = searchBank(*bank, number);
+    int idx = searchBank(*bank, number);
 
     addBalance(&bank->open_acc[idx], amount);
+}
+
+float withdrawAccount(Bank* bank, char number[8], float amount) {
+    int idx = searchBank(*bank, number);
+
+    return removeBalance(&bank->open_acc[idx], amount);
 }
