@@ -21,6 +21,11 @@ int main() {
 	printf("Enter Operand 2: ");
 	scanf("%f", &op2);
 
+	if (option == 4 && op2 == 0) {
+		printf("Error: Division by Zero\n");
+		return 1;
+	}
+
 	switch (option) {
 		case 1:
 			result = op1 + op2;
