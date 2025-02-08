@@ -5,10 +5,10 @@
 int main() {
 	srand(time(NULL));	
 
-	int max = 100;
-	int target = rand() % max;
 	int guess;
-	int score = 0;	
+	int max = 100;
+	int score = 0;
+	int target = rand() % max;	
 
 	printf("Number Guessing Game\n");
 
