@@ -43,6 +43,7 @@ Account createAccount(char acc_num[10]) {
 Bank createBank(int capacity) {
 	Bank new_bank;
 
+	new_bank.length = 0;
 	new_bank.capacity = capacity;
 	new_bank.acc_list = malloc(sizeof(Account)*new_bank.capacity);
 	
@@ -52,4 +53,16 @@ Bank createBank(int capacity) {
 void addAccount(Bank* bank, Account* acc) {
 	bank->acc_list[bank->length] = *acc;
 	bank->length++;
+}
+
+Account* searchAccount(Bank bank, char acc_num[10]) {
+	int i;
+
+	for (i = 0; i < bank.length; i++) {
+		if (strcmp(acc_num, bank.acc_list[i].acc_num)) {
+			return &bank.acc_list[i];
+		}
+	}
+
+	printf("Account not Found\n");
 }
