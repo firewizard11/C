@@ -17,16 +17,24 @@ Account createAccount(char acc_num[10]);
 
 Bank createBank(int capacity);
 void addAccount(Bank* bank, Account* acc);
+int searchAccount(Bank bank, char acc_num[10]);
 
 int main() {
+	char test_acc_num[10] = "123456789";
 	Bank test_bank = createBank(5);
-	Account test_acc = createAccount("1234567890");
+	Account test_acc = createAccount(test_acc_num);
 	
 	addAccount(&test_bank, &test_acc);
 
+	int idx = searchAccount(test_bank, test_acc_num);
+
+	if (idx == -1) {
+		return -1;
+	}
+
 	printf("Test Account\n");
-	printf("Account Number: %s\n", test_bank.acc_list[0].acc_num);
-	printf("Balance: %.2f\n", test_bank.acc_list[0].balance);
+	printf("Account Number: %s\n", test_bank.acc_list[idx].acc_num);
+	printf("Balance: %.2f\n", test_bank.acc_list[idx].balance);
 
 	return 0;
 }
@@ -55,14 +63,15 @@ void addAccount(Bank* bank, Account* acc) {
 	bank->length++;
 }
 
-Account* searchAccount(Bank bank, char acc_num[10]) {
+int searchAccount(Bank bank, char acc_num[10]) {
 	int i;
 
 	for (i = 0; i < bank.length; i++) {
-		if (strcmp(acc_num, bank.acc_list[i].acc_num)) {
-			return &bank.acc_list[i];
+		if (strcmp(acc_num, bank.acc_list[i].acc_num) == 0) {
+			return i;
 		}
 	}
 
 	printf("Account not Found\n");
+	return -1;
 }
