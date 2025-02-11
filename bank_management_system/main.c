@@ -2,8 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX_DIGITS 10
+
+
 typedef struct {
-	char acc_num[10];
+	char acc_num[MAX_DIGITS];
 	float balance;
 } Account;
 
@@ -13,14 +16,15 @@ typedef struct {
 	int length;
 } Bank;
 
-Account createAccount(char acc_num[10]);
+Account createAccount(char acc_num[MAX_DIGITS]);
 
 Bank createBank(int capacity);
 void addAccount(Bank* bank, Account* acc);
-int searchAccount(Bank bank, char acc_num[10]);
+int searchAccount(Bank bank, char acc_num[MAX_DIGITS]);
+
 
 int main() {
-	char test_acc_num[10] = "123456789";
+	char test_acc_num[MAX_DIGITS] = "1234567890";
 	Bank test_bank = createBank(5);
 	Account test_acc = createAccount(test_acc_num);
 	
@@ -39,7 +43,8 @@ int main() {
 	return 0;
 }
 
-Account createAccount(char acc_num[10]) {
+
+Account createAccount(char acc_num[MAX_DIGITS]) {
 	Account new_acc;
 
 	strcpy(new_acc.acc_num, acc_num);
@@ -63,7 +68,7 @@ void addAccount(Bank* bank, Account* acc) {
 	bank->length++;
 }
 
-int searchAccount(Bank bank, char acc_num[10]) {
+int searchAccount(Bank bank, char acc_num[MAX_DIGITS]) {
 	int i;
 
 	for (i = 0; i < bank.length; i++) {
