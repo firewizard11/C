@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 
 typedef struct {
@@ -32,6 +33,11 @@ int main() {
 
 
 Account createAccount(char num[10], float balance) {
+	if (strlen(num) != 9) {
+		printf("Error: Account Number should be 9 digits\n");
+		return; // TODO: Figure out Fail return 
+	}
+
 	Account new_acc = {*num, balance};
 	return new_acc;
 }
