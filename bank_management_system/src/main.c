@@ -15,6 +15,7 @@ float withdrawAccount(Account* acc, float amount);
 int main() {
 	char test_num[10];
 	float test_balance;
+	float buff;
 	Account* acc;
 
 	printf("Enter Account number: ");
@@ -43,6 +44,13 @@ int main() {
 		return 1;
 	}
 
+	buff = withdrawAccount(acc, 1500);
+
+	if (buff == -1) {
+		printf("Error: Not enough Money\n");
+		return -1;
+	}
+
 	printf("=== Test Account ===\n");
 	printf("Account Number: %s\n", acc->num);
 	printf("Account Balance: %.2f\n", acc->balance);
@@ -62,4 +70,15 @@ void depositAccount(Account* acc, float amount) {
 	acc->balance += amount;
 }
 
-float withdrawAccount(Account* acc, float amount);
+float withdrawAccount(Account* acc, float amount) {
+	float w_amount;
+
+	w_amount = acc->balance - amount;
+
+	if (w_amount < 0) {
+		return -1;
+	}
+
+	acc->balance -= amount;
+	return w_amount;
+}
