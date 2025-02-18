@@ -7,7 +7,7 @@ typedef struct {
 	float balance;
 } Account;
 
-Account createAccount(char num[10], float balance);
+Account* createAccount(char num[10], float balance);
 void depositAccount(Account* acc, float amount);
 float withdrawAccount(Account* acc, float amount);
 
@@ -15,14 +15,21 @@ float withdrawAccount(Account* acc, float amount);
 int main() {
 	char test_num[10];
 	float test_balance;
+	Account* acc;
 
 	printf("Enter Account number: ");
 	scanf("%s", &test_num);
 
+	// Account Number Input Validation
+	if (strlen(test_num) != 9) {
+		printf("Error: Account number must be 9 Digits\n");
+		return 1;
+	}
+
 	printf("Enter Account Balance: ");
 	scanf("%f", &test_balance);
 
-	Account test_acc = createAccount(test_num, test_balance);
+	acc = createAccount(test_num, test_balance);
 
 	printf("=== Test Account ===\n");
 	printf("Account Number: %s\n", test_num);
@@ -32,12 +39,7 @@ int main() {
 }
 
 
-Account createAccount(char num[10], float balance) {
-	if (strlen(num) != 9) {
-		printf("Error: Account Number should be 9 digits\n");
-		return; // TODO: Figure out Fail return 
-	}
-
+Account* createAccount(char num[10], float balance) {
 	Account new_acc = {*num, balance};
-	return new_acc;
+	return &new_acc;
 }
