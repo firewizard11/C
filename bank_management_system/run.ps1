@@ -1,2 +1,2 @@
-gcc -o bank src\main.c
+gcc -o bank src\main.c -g
 .\bank.exe
