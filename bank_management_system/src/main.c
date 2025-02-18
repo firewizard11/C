@@ -3,11 +3,20 @@
 #include "../include/account.h"
 
 
+typedef struct {
+	Account acc_list[10];
+	int acc_num;
+} Bank;
+
+Bank* createBank();
+
+
 int main() {
 	char test_num[10];
 	float test_balance;
 	float buff;
 	Account* acc;
+	Bank* test_bank;
 
 	printf("Enter Account number: ");
 	scanf("%s", &test_num);
@@ -23,10 +32,13 @@ int main() {
 
 	acc = createAccount(test_num, test_balance);
 
+	// Account Creation Error Check
 	if (acc == NULL) {
 		printf("Error: Account creation failed\n");
 		return 1;
 	}
+
+	test_bank = createBank();
 	
 	depositAccount(acc, 1500);
 
@@ -37,6 +49,7 @@ int main() {
 
 	buff = withdrawAccount(acc, 1500);
 
+	// Account Deposit Fail Check
 	if (buff == -1) {
 		printf("Error: Not enough Money\n");
 		return -1;
@@ -47,4 +60,11 @@ int main() {
 	printf("Account Balance: %.2f\n", acc->balance);
 
 	return 0;
+}
+
+
+Bank* createBank() {
+	static Bank new_bank;
+	new_bank.acc_num = 0;
+	return &new_bank;
 }
