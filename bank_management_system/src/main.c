@@ -1,15 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
-
-typedef struct {
-	char num[10];
-	float balance;
-} Account;
-
-Account* createAccount(char num[10], float balance);
-void depositAccount(Account* acc, float amount);
-float withdrawAccount(Account* acc, float amount);
+#include "../include/account.h"
 
 
 int main() {
@@ -56,29 +47,4 @@ int main() {
 	printf("Account Balance: %.2f\n", acc->balance);
 
 	return 0;
-}
-
-
-Account* createAccount(char num[10], float balance) {
-	static Account new_acc;
-	strcpy(new_acc.num, num); 
-	new_acc.balance = balance;
-	return &new_acc;
-}
-
-void depositAccount(Account* acc, float amount) {
-	acc->balance += amount;
-}
-
-float withdrawAccount(Account* acc, float amount) {
-	float w_amount;
-
-	w_amount = acc->balance - amount;
-
-	if (w_amount < 0) {
-		return -1;
-	}
-
-	acc->balance -= amount;
-	return w_amount;
 }
