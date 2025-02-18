@@ -9,4 +9,4 @@ This repo contains some mini C projects that aren't big enough to be standalone 
 - hello_world: Just a Hello World Program
 - guessing_game: A text based Number Guessing Game (Guess the random number)
 - calculator: A simple text based calculator that can perform arithmetic between 2 operands
-- bank_management_system: A text based bank managment system that allows you to create/login to an account, perform operations like deposit, withdraw, make payment, or check transaction history
+- bank_management_system: A text based bank managment system that allows you to create/login to an account, perform operations like deposit, withdraw, make payment
