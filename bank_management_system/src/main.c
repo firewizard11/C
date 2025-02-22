@@ -6,8 +6,12 @@
 
 typedef struct {
 	Account acc_list[10];
-	int acc_num;
+	int num_acc;
 } Bank;
+
+Bank createBank(int num_acc);
+int searchBank(Bank* bank, char acc_num[10]);
+void addAccount(Bank* bank, Account acc);
 
 int validate_acc_num(char acc_num[10]);
 int validate_pin(char pin[5]);
@@ -16,6 +20,9 @@ int validate_pin(char pin[5]);
 int main() {
 	int option;
 	char acc_num[10], pin[5];
+	Bank bank = createBank(0);
+	int acc1;
+	int acc2;
 
 	printf("=== Core Banking System ===\n");
 
@@ -40,8 +47,44 @@ int main() {
 		printf("Error: Invalid Pin\n");
 		return 1;
 	}
+
+	addAccount(&bank, *createAccount("000000000", "0000", 0));
+
+	switch (option) {
+		case 1:
+			addAccount(&bank, *createAccount(acc_num, pin, 0));
+			printf("Account Created\n");
+			break;
+	}
+
+	return 0;
 }
 
+
+Bank createBank(int num_acc) {
+	Bank new_bank;
+	new_bank.num_acc = num_acc;
+	return new_bank;
+}
+
+int searchBank(Bank* bank, char acc_num[10]) {
+	if (bank->num_acc == 0) {
+		return -1;
+	}
+
+	for (int i = 0; i < bank->num_acc; i++) {
+		if (strcmp(bank->acc_list[i].num, acc_num) == 0) {
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+void addAccount(Bank* bank, Account acc) {
+	bank->acc_list[bank->num_acc] = acc;
+	bank->num_acc++;
+}
 
 int validate_acc_num(char acc_num[10]) {
 	int length = strlen(acc_num);
