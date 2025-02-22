@@ -1,9 +1,10 @@
 #include <string.h>
 #include "../include/account.h"
 
-Account* createAccount(char num[10], float balance) {
+Account* createAccount(char num[10], char pin[5], float balance) {
 	static Account new_acc;
-	strcpy(new_acc.num, num); 
+	strcpy(new_acc.num, num);
+	strcpy(new_acc.pin, pin); 
 	new_acc.balance = balance;
 	return &new_acc;
 }
