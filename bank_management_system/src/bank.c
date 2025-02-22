@@ -55,3 +55,39 @@ void loadBank(Bank* bank) {
 
 	fclose(fp);
 }
+
+void saveBank(Bank* bank) {
+	const char filename[] = "./account.txt";
+	char acc_num[10];
+	char pin[5];
+	float balance;
+	char s_balance[10];
+	int i;
+	char line[30];
+	FILE* fp = fopen(filename, "w");
+
+	if (!fp) {
+		printf("Error: Save Failed\n");
+		return;
+	}
+
+	for (i = 0; i < bank->num_acc; i++) {
+		strcpy(line, "");
+		strcpy(acc_num, bank->acc_list[i].num);
+		strcpy(pin, bank->acc_list[i].pin);
+		balance = bank->acc_list[i].balance;
+		sprintf(s_balance, "%.2f", balance);
+
+		strcat(line, acc_num);
+		strcat(line, ",");
+		strcat(line, pin);
+		strcat(line, ",");
+		strcat(line, s_balance);
+
+		if (i != (bank->num_acc - 1)) {
+			strcat(line, "\n");
+		}
+
+		fputs(line, fp);
+	}
+}

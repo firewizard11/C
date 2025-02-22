@@ -7,3 +7,4 @@ Bank createBank(int num_acc);
 int searchBank(Bank* bank, char acc_num[10]);
 void addAccount(Bank* bank, Account acc);
 void loadBank(Bank* bank);
+void saveBank(Bank* bank);

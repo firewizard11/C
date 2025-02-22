@@ -12,6 +12,8 @@ int main() {
 	Bank bank = createBank(0);
 	Account* curr_acc;
 
+	loadBank(&bank);
+
 	printf("=== Core Banking System ===\n");
 
 	printf("1) Create Account\n");
@@ -56,26 +58,25 @@ int main() {
 		case 2:
 			idx_acc = searchBank(&bank, acc_num);
 
-			switch (idx_acc) {
-				case -1:
-					printf("Account Not Found\n");
-					break;
-
-				case 0:
-					if (strcmp(bank.acc_list[idx_acc].pin, pin) != 0) {
-						printf("Error: PIN doesn't Match\n");
-						return 1;
-					} 
-					
-					curr_acc = &bank.acc_list[idx_acc];
-
-					printf("Account Number: %s\n", curr_acc->num);
-					printf("Pin: %s\n", curr_acc->pin);
-					printf("Balance: %.2f\n", curr_acc->balance);
-					break;
+			
+			if (idx_acc == -1) {
+				printf("Account Not Found\n");
+				return 1;
 			}
 
-	}
+			if (strcmp(bank.acc_list[idx_acc].pin, pin) != 0) {
+				printf("Error: PIN doesn't Match\n");
+				return 1;
+			} 
+			
+			curr_acc = &bank.acc_list[idx_acc];
 
+			printf("Account Number: %s\n", curr_acc->num);
+			printf("Pin: %s\n", curr_acc->pin);
+			printf("Balance: %.2f\n", curr_acc->balance);
+			}
+
+
+	saveBank(&bank);
 	return 0;
 }
