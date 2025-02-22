@@ -90,4 +90,6 @@ void saveBank(Bank* bank) {
 
 		fputs(line, fp);
 	}
+
+	fclose(fp);
 }
