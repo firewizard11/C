@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdio.h>
 #include "..\include\account.h"
 #include "..\include\bank.h"
 
@@ -25,4 +26,32 @@ int searchBank(Bank* bank, char acc_num[10]) {
 void addAccount(Bank* bank, Account acc) {
 	bank->acc_list[bank->num_acc] = acc;
 	bank->num_acc++;
+}
+
+void loadBank(Bank* bank) {
+	const char filename[] = "./account.txt";
+	char acc_num[10];
+	char pin[5];
+	float balance;
+	FILE* fp = fopen(filename, "r");
+
+	if (!fp) {
+		printf("Error: File Not Present\n");
+		return;
+	}
+
+	while (fgetc(fp) != -1) { // Returns -1 when EOF
+		fseek(fp, - (long) sizeof(char), SEEK_CUR); // Revert the fgetc fp movement
+
+		fgets(acc_num, sizeof(acc_num), fp);
+		fseek(fp, 1, SEEK_CUR);
+		fgets(pin, sizeof(pin), fp);
+		fseek(fp, 1, SEEK_CUR);
+		fscanf(fp, "%f", &balance);
+		fseek(fp, 2, SEEK_CUR);
+
+		addAccount(bank, *createAccount(acc_num, pin, balance));
+	}
+
+	fclose(fp);
 }
