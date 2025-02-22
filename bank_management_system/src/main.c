@@ -60,7 +60,17 @@ int validate_acc_num(char acc_num[10]) {
 }
 
 int validate_pin(char pin[5]) {
-	printf("%d", strlen(pin));
+	int length = strlen(pin);
+
+	if (length != 4) {
+		return 1;
+	}
+
+	for (int i = 0; i < length; i++) {
+		if (isdigit(pin[i]) == 0) {
+			return 1;
+		}
+	}
 
 	return 0;
 }
