@@ -4,6 +4,7 @@
 #include "../include/account.h"
 #include "../include/bank.h"
 
+// TODO: Add Bank Persistance
 
 int main() {
 	int option, idx_acc;
@@ -58,6 +59,11 @@ int main() {
 					printf("Account Not Found\n");
 					break;
 				case 0:
+					if (strcmp(bank.acc_list[idx_acc].pin, pin) != 0) {
+						printf("Error: PIN doesn't Match\n");
+						return 1;
+					} 
+
 					printf("Account Number: %s\n", bank.acc_list[idx_acc].num);
 					printf("Pin: %s\n", bank.acc_list[idx_acc].pin);
 					printf("Balance: %.2f\n", bank.acc_list[idx_acc].balance);
