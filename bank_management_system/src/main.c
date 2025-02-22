@@ -4,10 +4,10 @@
 #include "../include/account.h"
 #include "../include/bank.h"
 
-// TODO: Add Bank Persistance
 
 int main() {
-	int option, idx_acc;
+	int option, option2, option3, idx_acc;
+	float amount;
 	char acc_num[10], pin[5];
 	Bank bank = createBank(0);
 	Account* curr_acc;
@@ -58,7 +58,6 @@ int main() {
 		case 2:
 			idx_acc = searchBank(&bank, acc_num);
 
-			
 			if (idx_acc == -1) {
 				printf("Account Not Found\n");
 				return 1;
@@ -69,11 +68,48 @@ int main() {
 				return 1;
 			} 
 			
-			curr_acc = &bank.acc_list[idx_acc];
+			curr_acc = &bank.acc_list[idx_acc]; //TODO: Figure out why this won't update the value in the bank
 
-			printf("Account Number: %s\n", curr_acc->num);
-			printf("Pin: %s\n", curr_acc->pin);
-			printf("Balance: %.2f\n", curr_acc->balance);
+			while (1) {
+				printf("1) Deposit\n");
+				printf("2) Withdraw\n");
+				printf("3) Check Balance\n");
+				printf("Select an Option: ");
+				scanf("%d", &option2);
+	
+				if (option2 != 1 && option2 != 2 && option2 != 3) {
+					printf("Error: Invalid Option\n");
+					continue;
+				}
+	
+				switch (option2) {
+					case 1:
+						printf("Enter Amount: ");
+						scanf("%f", amount);
+						depositAccount(curr_acc, amount);
+						break;
+					case 2:
+						printf("Enter Amount: ");
+						scanf("%f", amount);
+						withdrawAccount(curr_acc, amount);
+						break;
+					case 3:
+						printf("Balance: %.2f\n", curr_acc->balance);
+						break;
+				}
+
+				printf("1) More Operations\n");
+				printf("2) Quit\n");
+				scanf("%d", &option3);
+
+				if (option3 == 1) {
+					continue;
+				} else if (option3 == 2) {
+					break;
+				}
+			}
+
+			break;
 			}
 
 
