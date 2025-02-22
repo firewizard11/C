@@ -18,11 +18,9 @@ int validate_pin(char pin[5]);
 
 
 int main() {
-	int option;
+	int option, idx_acc;
 	char acc_num[10], pin[5];
 	Bank bank = createBank(0);
-	int acc1;
-	int acc2;
 
 	printf("=== Core Banking System ===\n");
 
@@ -48,10 +46,15 @@ int main() {
 		return 1;
 	}
 
-	addAccount(&bank, *createAccount("000000000", "0000", 0));
+	addAccount(&bank, *createAccount("123456789", "0000", 0));
 
 	switch (option) {
 		case 1:
+			if (searchBank(&bank, acc_num) != -1) {
+				printf("Error: Account Already Exists\n");
+				return 1;
+			}
+
 			addAccount(&bank, *createAccount(acc_num, pin, 0));
 			printf("Account Created\n");
 			break;
