@@ -2,7 +2,7 @@
 
 ## Description
 
-A text based bank managment system that allows you to create/login to an account, perform operations like deposit, withdraw, make payment
+A Text Based Core Banking System
 
 ## Features
 
@@ -11,4 +11,10 @@ A text based bank managment system that allows you to create/login to an account
 - Login to Account
 - Deposit to Account
 - Withdraw from Account
-- Pay from Account
+- Check Account Balance
+
+## How To Use
+
+- Run bank.exe to start the program
+- PowerShell + GCC: To compile on Windows use .\build.ps1
+- GCC Compile Command: gcc -o bank src/main.c src/account.c src/bank.c
