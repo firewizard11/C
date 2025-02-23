@@ -51,7 +51,7 @@ int main() {
 				return 1;
 			}
 
-			addAccount(&bank, *createAccount(acc_num, pin, 0));
+			addAccount(&bank, createAccount(acc_num, pin, 0));
 			printf("Account Created\n");
 			break;
 
