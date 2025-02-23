@@ -68,7 +68,7 @@ int main() {
 				return 1;
 			} 
 			
-			curr_acc = &bank.acc_list[idx_acc]; //TODO: Figure out why this won't update the value in the bank
+			curr_acc = &bank.acc_list[idx_acc];
 
 			while (1) {
 				printf("1) Deposit\n");
