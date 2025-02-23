@@ -4,12 +4,32 @@
 #include "..\include\bank.h"
 
 Bank createBank(int num_acc) {
+	/* Creates a Bank Struct 
+	
+	:Parameters:
+	- int num_acc: Number of accounts to start with (should be 0 most of the time)
+
+	:Returns:
+	- Bank new_bank: The Bank struct
+	*/
+
 	Bank new_bank;
 	new_bank.num_acc = num_acc;
 	return new_bank;
 }
 
 int searchBank(Bank* bank, char acc_num[10]) {
+	/* Searches the Bank struct for the given account number
+	
+	:Parameters: 
+	- Bank* bank: Pointer to bank struct
+	- char acc_num[10]: The account number to look for
+
+	:Returns:
+	- Index for Account in bank.acc_list
+	- -1: If bank is empty or account not found
+	*/
+
 	if (bank->num_acc == 0) {
 		return -1;
 	}
@@ -29,10 +49,10 @@ void addAccount(Bank* bank, Account acc) {
 }
 
 void loadBank(Bank* bank) {
-	const char filename[] = "./account.txt";
 	char acc_num[10];
 	char pin[5];
 	float balance;
+	const char filename[] = "./account.txt";
 	FILE* fp = fopen(filename, "r");
 
 	if (!fp) {
@@ -50,20 +70,19 @@ void loadBank(Bank* bank) {
 		fscanf(fp, "%f", &balance);
 		fseek(fp, 2, SEEK_CUR);
 
-		addAccount(bank, *createAccount(acc_num, pin, balance));
+		addAccount(bank, createAccount(acc_num, pin, balance));
 	}
 
 	fclose(fp);
 }
 
 void saveBank(Bank* bank) {
-	const char filename[] = "./account.txt";
 	char acc_num[10];
 	char pin[5];
+	char s_balance[10]; // String version of balance
+	char line[30]; // Line that gets written to file
 	float balance;
-	char s_balance[10];
-	int i;
-	char line[30];
+	const char filename[] = "./account.txt";
 	FILE* fp = fopen(filename, "w");
 
 	if (!fp) {
@@ -71,8 +90,8 @@ void saveBank(Bank* bank) {
 		return;
 	}
 
-	for (i = 0; i < bank->num_acc; i++) {
-		strcpy(line, "");
+	for (int i = 0; i < bank->num_acc; i++) {
+		strcpy(line, ""); // Clears the line
 		strcpy(acc_num, bank->acc_list[i].num);
 		strcpy(pin, bank->acc_list[i].pin);
 		balance = bank->acc_list[i].balance;
