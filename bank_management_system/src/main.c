@@ -85,12 +85,12 @@ int main() {
 				switch (option2) {
 					case 1:
 						printf("Enter Amount: ");
-						scanf("%f", amount);
+						scanf("%f", &amount);
 						depositAccount(curr_acc, amount);
 						break;
 					case 2:
 						printf("Enter Amount: ");
-						scanf("%f", amount);
+						scanf("%f", &amount);
 						withdrawAccount(curr_acc, amount);
 						break;
 					case 3:
@@ -100,6 +100,7 @@ int main() {
 
 				printf("1) More Operations\n");
 				printf("2) Quit\n");
+				printf("Select an Option: ");
 				scanf("%d", &option3);
 
 				if (option3 == 1) {
@@ -108,7 +109,7 @@ int main() {
 					break;
 				}
 			}
-
+			
 			break;
 			}
 
