@@ -2,7 +2,7 @@
 
 ## Description
 
-This repo contains some mini C projects that aren't big enough to be standalone projects and are mainly educational to learn the C Programming Language
+Some mini projects to learn C
 
 ## Table of Contents
 
@@ -10,3 +10,4 @@ This repo contains some mini C projects that aren't big enough to be standalone 
 - guessing_game: A text based Number Guessing Game (Guess the random number)
 - calculator: A simple text based calculator that can perform arithmetic between 2 operands
 - bank_management_system: A text based bank managment system that allows you to create/login to an account, perform operations like deposit, withdraw, make payment
+- makefile-demo: Some exercises from this [Tutorial](https://makefiletutorial.com/)
